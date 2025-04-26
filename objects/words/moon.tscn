@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://damq4jehtbhaf"]
+
+[ext_resource type="PackedScene" uid="uid://d3nmgsqbw8mxc" path="res://objects/words/word.tscn" id="1_g8k1x"]
+
+[node name="Moon" instance=ExtResource("1_g8k1x")]

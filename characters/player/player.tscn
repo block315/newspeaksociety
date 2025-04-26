@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5nb0dvhn8dww"]
+
+[ext_resource type="Texture2D" uid="uid://th27lw6bduhl" path="res://arts/2D/sprites/kenney_pixel-vehicle-pack/PNG/Characters/man.png" id="1_5dc8e"]
+[ext_resource type="Script" uid="uid://bca6fsgvnrojd" path="res://characters/player/player.gd" id="1_ixbpm"]
+[ext_resource type="Texture2D" uid="uid://bbh02vm4x76g8" path="res://arts/2D/sprites/kenney_pixel-vehicle-pack/PNG/Characters/man_point.png" id="2_ixbpm"]
+[ext_resource type="Texture2D" uid="uid://b4whutcfflo3a" path="res://arts/2D/sprites/kenney_pixel-vehicle-pack/PNG/Characters/man_walk1.png" id="3_c6leb"]
+[ext_resource type="Texture2D" uid="uid://cmkwkbydjmtey" path="res://arts/2D/sprites/kenney_pixel-vehicle-pack/PNG/Characters/man_walk2.png" id="4_dirf7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idpv6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5dc8e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ixbpm")
+}],
+"loop": true,
+"name": &"point",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_c6leb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dirf7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixbpm"]
+size = Vector2(21, 49)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ixbpm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -37)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_idpv6")
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.720969
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -24.5)
+shape = SubResource("RectangleShape2D_ixbpm")

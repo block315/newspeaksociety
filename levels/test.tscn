@@ -1,0 +1,86 @@
+[gd_scene load_steps=17 format=3 uid="uid://bov12t6uu3m5m"]
+
+[ext_resource type="Texture2D" uid="uid://dbpu7mi4eh5yb" path="res://arts/2D/pictures/starry_night/Starry_Night.webp" id="1_pnvjf"]
+[ext_resource type="PackedScene" uid="uid://b5nb0dvhn8dww" path="res://characters/player/player.tscn" id="2_lkjt4"]
+[ext_resource type="Script" uid="uid://k888dse4yu8c" path="res://levels/camera_2d.gd" id="3_2grjb"]
+[ext_resource type="Texture2D" uid="uid://buby60aq4fecj" path="res://arts/2D/pictures/starry_night/Moon.png" id="3_6g8e2"]
+[ext_resource type="Script" uid="uid://b7yvy8q23f2m6" path="res://objects/means/means.gd" id="4_6g8e2"]
+[ext_resource type="Texture2D" uid="uid://bbalstmu7co26" path="res://arts/2D/pictures/starry_night/church.png" id="4_u45fp"]
+[ext_resource type="Texture2D" uid="uid://dl4j1snq78io5" path="res://arts/2D/pictures/starry_night/tree.png" id="5_2grjb"]
+[ext_resource type="PackedScene" uid="uid://damq4jehtbhaf" path="res://objects/words/moon.tscn" id="5_u45fp"]
+[ext_resource type="Texture2D" uid="uid://dsoxuoa3dlyqq" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/transparent-dark/transparentDark01.png" id="9_kqvnf"]
+[ext_resource type="Texture2D" uid="uid://btisdi317td3n" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/shaded-light/shadedLight03.png" id="10_eudka"]
+[ext_resource type="Texture2D" uid="uid://c28jp7k1khgu0" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/transparent-dark/transparentDark03.png" id="11_lqn8c"]
+[ext_resource type="Texture2D" uid="uid://dyo05rxufp6r1" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/shaded-light/shadedLight05.png" id="12_08uri"]
+[ext_resource type="Texture2D" uid="uid://bty13aw6ykvym" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/transparent-dark/transparentDark04.png" id="13_fivcu"]
+[ext_resource type="Texture2D" uid="uid://b0d5jnxvgqevn" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/shaded-light/shadedLight06.png" id="14_uy2g7"]
+[ext_resource type="Texture2D" uid="uid://c5b88wimk4bia" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/transparent-dark/transparentDark08.png" id="15_u1nm5"]
+[ext_resource type="Texture2D" uid="uid://cmv2gat0kcw81" path="res://arts/2D/UI/kenney_onscreen-controls/Sprites/shaded-light/shadedLight10.png" id="16_1w0m8"]
+
+[node name="StarryNight" type="StaticBody2D"]
+
+[node name="Base" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_pnvjf")
+centered = false
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_lkjt4")]
+position = Vector2(135, 357)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+limit_left = 0
+limit_top = 0
+position_smoothing_enabled = true
+script = ExtResource("3_2grjb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(5, 688, 50, 711, 76, 722, 100, 731, 149, 716, 177, 709, 432, 703, 466, 688, 501, 664, 539, 660, 578, 675, 591, 686, 640, 671, 687, 639, 751, 613, 803, 602, 839, 604, 856, 609, 916, 594, 959, 585, 998, 579, 1030, 568, 1054, 566, 1071, 529, 1112, 527, 1094, 499, 1165, 484, 1197, 491, 1197, -2, 1268, -2, 1272, 1007, -29, 1005, -74, 335, -2, 323)
+
+[node name="Moon" type="Sprite2D" parent="."]
+position = Vector2(1101, 169)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_6g8e2")
+script = ExtResource("4_6g8e2")
+word = ExtResource("5_u45fp")
+
+[node name="Church" type="Sprite2D" parent="."]
+position = Vector2(658, 739)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_u45fp")
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(344, 506)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_2grjb")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UpTouchScreenButton" type="TouchScreenButton" parent="UI"]
+position = Vector2(1001, 477)
+texture_normal = ExtResource("9_kqvnf")
+texture_pressed = ExtResource("10_eudka")
+
+[node name="LeftTouchScreenButton" type="TouchScreenButton" parent="UI"]
+position = Vector2(953, 524)
+texture_normal = ExtResource("11_lqn8c")
+texture_pressed = ExtResource("12_08uri")
+
+[node name="RightTouchScreenButton" type="TouchScreenButton" parent="UI"]
+position = Vector2(1033, 528)
+texture_normal = ExtResource("13_fivcu")
+texture_pressed = ExtResource("14_uy2g7")
+
+[node name="DownTouchScreenButton3" type="TouchScreenButton" parent="UI"]
+position = Vector2(1001, 559)
+texture_normal = ExtResource("15_u1nm5")
+texture_pressed = ExtResource("16_1w0m8")
+
+[connection signal="pressed" from="UI/UpTouchScreenButton" to="CharacterBody2D" method="_on_up_touch_screen_button_pressed"]
+[connection signal="released" from="UI/UpTouchScreenButton" to="CharacterBody2D" method="_on_up_touch_screen_button_released"]
+[connection signal="pressed" from="UI/LeftTouchScreenButton" to="CharacterBody2D" method="_on_left_touch_screen_button_pressed"]
+[connection signal="released" from="UI/LeftTouchScreenButton" to="CharacterBody2D" method="_on_left_touch_screen_button_released"]
+[connection signal="pressed" from="UI/RightTouchScreenButton" to="CharacterBody2D" method="_on_right_touch_screen_button_pressed"]
+[connection signal="released" from="UI/RightTouchScreenButton" to="CharacterBody2D" method="_on_right_touch_screen_button_released"]
+[connection signal="pressed" from="UI/DownTouchScreenButton3" to="CharacterBody2D" method="_on_down_touch_screen_button_3_pressed"]
+[connection signal="released" from="UI/DownTouchScreenButton3" to="CharacterBody2D" method="_on_down_touch_screen_button_3_released"]
